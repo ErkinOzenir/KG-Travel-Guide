@@ -44,14 +44,32 @@ class RegisterSerializer(serializers.ModelSerializer):
     user.set_password(validated_data['password'])
     user.save()
     return user
+  
+class PlaceReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlaceReview
+        fields = '__all__'
 
+class HotelReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HotelReview
+        fields = '__all__'
 
 class PlaceSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Place
-        fields = '__all__'
+  reviews = PlaceReviewSerializer(many=True, read_only=True)
 
+  class Meta:
+      model = Place
+      fields = '__all__'
+
+class HotelSerializer(serializers.ModelSerializer):
+
+  reviews = HotelReviewSerializer(many=True, read_only=True)
+
+  class Meta:
+      model = Hotel
+      fields = '__all__'
 
 class LoginAPISerializer(serializers.Serializer):
     username = serializers.CharField()

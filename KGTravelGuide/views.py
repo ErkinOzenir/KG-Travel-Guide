@@ -63,3 +63,13 @@ class PlaceViewSet(viewsets.ModelViewSet):
   serializer_class = PlaceSerializer
   filter_backends = [DjangoFilterBackend]
   filterset_fields = ['tags', 'city', 'region']
+  http_method_names = ['get', 'head']
+
+
+class HotelViewSet(viewsets.ModelViewSet):
+  queryset = Hotel.objects.all()
+  serializer_class = HotelSerializer
+  filter_backends = [DjangoFilterBackend]
+  filterset_fields = ['tags', 'city', 'region']
+  http_method_names = ['get', 'head']
+

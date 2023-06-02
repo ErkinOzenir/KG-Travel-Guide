@@ -28,6 +28,8 @@ user_detail = UserViewSet.as_view({
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet,basename="user")
+router.register(r'places', PlaceViewSet, basename="place")
+router.register(r'hotels', HotelViewSet, basename="hotels")
 
 urlpatterns = [
   path('', include(router.urls)),
